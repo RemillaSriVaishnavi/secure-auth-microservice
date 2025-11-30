@@ -6,18 +6,15 @@ from datetime import datetime, timezone
 import os
 import sys
 
-# Use pyotp same way as your app
 try:
     import pyotp
 except ImportError:
-    # If pyotp isn't installed in this environment, fail gracefully
     print("pyotp not installed", file=sys.stderr)
     sys.exit(1)
 
 SEED_PATH = "/data/seed.txt"
 
 def get_hex_seed():
-    """Read hex seed from /data/seed.txt, return None if not available."""
     try:
         with open(SEED_PATH, "r") as f:
             s = f.read().strip()
